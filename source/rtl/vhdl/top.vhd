@@ -250,6 +250,34 @@ begin
   --dir_red
   --dir_green
   --dir_blue
+  
+  
+	dir_red	<= 	x"FF" when dir_pixel_column < H_RES/8 else
+						x"FF" when dir_pixel_column >= H_RES/8 and dir_pixel_column < 2*H_RES/8 else
+						x"00" when dir_pixel_column >= 2*H_RES/8 and dir_pixel_column < 3*H_RES/8 else
+						x"80" when dir_pixel_column >= 3*H_RES/8 and dir_pixel_column < 4*H_RES/8 else
+						x"00" when dir_pixel_column >= 4*H_RES/8 and dir_pixel_column < 5*H_RES/8 else
+						x"DC" when dir_pixel_column >= 5*H_RES/8 and dir_pixel_column < 6*H_RES/8 else
+						x"FF" when dir_pixel_column >= 6*H_RES/8 and dir_pixel_column < 7*H_RES/8 else
+						x"FF";
+					  
+		dir_green <= x"FF" when dir_pixel_column < H_RES/8 else
+						 x"FF" when dir_pixel_column >= H_RES/8 and dir_pixel_column < 2*H_RES/8 else
+						 x"00" when dir_pixel_column >= 2*H_RES/8 and dir_pixel_column < 3*H_RES/8 else
+						 x"00" when dir_pixel_column >= 3*H_RES/8 and dir_pixel_column < 4*H_RES/8 else
+						 x"BF" when dir_pixel_column >= 4*H_RES/8 and dir_pixel_column < 5*H_RES/8 else
+						 x"14" when dir_pixel_column >= 5*H_RES/8 and dir_pixel_column < 6*H_RES/8 else
+						 x"DA" when dir_pixel_column >= 6*H_RES/8 and dir_pixel_column < 7*H_RES/8 else
+						 x"7F";
+		
+		dir_blue <= x"FF" when dir_pixel_column < H_RES/8 else
+						x"00" when dir_pixel_column >= H_RES/8 and dir_pixel_column < 2*H_RES/8 else
+						x"80" when dir_pixel_column >= 2*H_RES/8 and dir_pixel_column < 3*H_RES/8 else
+						x"80" when dir_pixel_column >= 3*H_RES/8 and dir_pixel_column < 4*H_RES/8 else
+						x"FF" when dir_pixel_column >= 4*H_RES/8 and dir_pixel_column < 5*H_RES/8 else
+						x"3C" when dir_pixel_column >= 5*H_RES/8 and dir_pixel_column < 6*H_RES/8 else
+						x"B9" when dir_pixel_column >= 6*H_RES/8 and dir_pixel_column < 7*H_RES/8 else
+						x"50";
  
   -- koristeci signale realizovati logiku koja pise po TXT_MEM
   --char_address
