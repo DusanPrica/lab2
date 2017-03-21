@@ -252,33 +252,34 @@ begin
   --dir_blue
   
   
-	dir_red	<= 	x"FF" when dir_pixel_column < H_RES/8 else
-						x"FF" when dir_pixel_column >= H_RES/8 and dir_pixel_column < 2*H_RES/8 else
-						x"00" when dir_pixel_column >= 2*H_RES/8 and dir_pixel_column < 3*H_RES/8 else
-						x"80" when dir_pixel_column >= 3*H_RES/8 and dir_pixel_column < 4*H_RES/8 else
-						x"00" when dir_pixel_column >= 4*H_RES/8 and dir_pixel_column < 5*H_RES/8 else
-						x"DC" when dir_pixel_column >= 5*H_RES/8 and dir_pixel_column < 6*H_RES/8 else
-						x"FF" when dir_pixel_column >= 6*H_RES/8 and dir_pixel_column < 7*H_RES/8 else
-						x"FF";
-					  
-		dir_green <= x"FF" when dir_pixel_column < H_RES/8 else
-						 x"FF" when dir_pixel_column >= H_RES/8 and dir_pixel_column < 2*H_RES/8 else
-						 x"00" when dir_pixel_column >= 2*H_RES/8 and dir_pixel_column < 3*H_RES/8 else
-						 x"00" when dir_pixel_column >= 3*H_RES/8 and dir_pixel_column < 4*H_RES/8 else
-						 x"BF" when dir_pixel_column >= 4*H_RES/8 and dir_pixel_column < 5*H_RES/8 else
-						 x"14" when dir_pixel_column >= 5*H_RES/8 and dir_pixel_column < 6*H_RES/8 else
-						 x"DA" when dir_pixel_column >= 6*H_RES/8 and dir_pixel_column < 7*H_RES/8 else
-						 x"7F";
-		
-		dir_blue <= x"FF" when dir_pixel_column < H_RES/8 else
-						x"00" when dir_pixel_column >= H_RES/8 and dir_pixel_column < 2*H_RES/8 else
-						x"80" when dir_pixel_column >= 2*H_RES/8 and dir_pixel_column < 3*H_RES/8 else
-						x"80" when dir_pixel_column >= 3*H_RES/8 and dir_pixel_column < 4*H_RES/8 else
-						x"FF" when dir_pixel_column >= 4*H_RES/8 and dir_pixel_column < 5*H_RES/8 else
-						x"3C" when dir_pixel_column >= 5*H_RES/8 and dir_pixel_column < 6*H_RES/8 else
-						x"B9" when dir_pixel_column >= 6*H_RES/8 and dir_pixel_column < 7*H_RES/8 else
-						x"50";
+dir_red 	<=	 x"FF" when dir_pixel_column < H_RES/8 else -- white
+				 x"FF" when (H_RES/8 < dir_pixel_column ) and  (dir_pixel_column < 2*H_RES/8) else -- yellow
+				 x"00" when (2*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 3*H_RES/8) else -- cyan
+				 x"00" when (3*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 4*H_RES/8) else --	green
+				 x"D0" when (4*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 5*H_RES/8) else -- purple
+				 x"FF" when (5*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 6*H_RES/8) else -- red
+				 x"00" when (6*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 7*H_RES/8) else -- blue 
+				 x"00" when (7*H_RES/8 < dir_pixel_column) and (dir_pixel_column < H_RES); -- black
  
+ 
+dir_green <= x"FF" when dir_pixel_column < H_RES/8 else -- white
+			    x"CC" when (H_RES/8 < dir_pixel_column ) and  (dir_pixel_column < 2*H_RES/8) else -- yellow
+			    x"CC" when (2*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 3*H_RES/8) else -- cyan
+			    x"FF" when (3*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 4*H_RES/8) else -- green
+			    x"00" when (4*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 5*H_RES/8) else -- purple
+			    x"00" when (5*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 6*H_RES/8) else -- red
+			    x"00" when (6*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 7*H_RES/8) else -- blue 
+			    x"00" when (7*H_RES/8 < dir_pixel_column) and (dir_pixel_column < H_RES); -- black
+				 
+				 
+dir_blue <=  x"FF" when dir_pixel_column < H_RES/8 else -- white
+			    x"00" when (H_RES/8 < dir_pixel_column ) and  (dir_pixel_column < 2*H_RES/8) else -- yellow
+			    x"CC" when (2*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 3*H_RES/8) else -- cyan
+			    x"00" when (3*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 4*H_RES/8) else -- green
+			    x"CC" when (4*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 5*H_RES/8) else -- purple
+			    x"00" when (5*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 6*H_RES/8) else -- red
+			    x"FF" when (6*H_RES/8 < dir_pixel_column) and (dir_pixel_column < 7*H_RES/8) else -- blue 
+			    x"00" when (7*H_RES/8 < dir_pixel_column) and (dir_pixel_column < H_RES); -- black
   -- koristeci signale realizovati logiku koja pise po TXT_MEM
   --char_address
   --char_value
